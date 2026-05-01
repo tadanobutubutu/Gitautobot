@@ -1,4 +1,4 @@
-name: GitHell
+name: GitHell Standardized
 
 on:
   schedule:
@@ -14,6 +14,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Ensure abyss folder exists
         run: mkdir -p abyss
@@ -38,22 +40,43 @@ jobs:
           commit_id=$(cat /proc/sys/kernel/random/uuid)
           total_commits=$(git rev-list --count HEAD)
 
+          # Co-authors list
+          CO_AUTHORS=(
+            "Antigravity <antigravity@google.com>"
+            "GitHub Copilot <copilot@github.com>"
+            "OpenAI Bot <bot@openai.com>"
+            "Claude AI <claude@anthropic.com>"
+            "DeepSeek <bot@deepseek.com>"
+            "Gemini <gemini@google.com>"
+            "GitHell Bot <bot@githell.com>"
+            "Abyss Dweller <dweller@abyss.com>"
+            "Tadanobutubutu-AI <ai@tadanobutubutu.com>"
+            "Kusa-Grown-Bot <bot@kusa.jp>"
+          )
+          RANDOM_CO_AUTHOR=${CO_AUTHORS[$RANDOM % ${#CO_AUTHORS[@]}]}
+
           echo "  _________.__  __     ___ ___         .__  .__   " > abyss/README.yml
           echo " /  _____/|__|/  |_  /   |   \\   ____ |  | |  |  " >> abyss/README.yml
-          echo "/   \\  __ |  \\   __\\/    ~    \\_/ __ \\|  | |  |  " >> abyss/README.yml
-          echo "\\    \\_\\  \\|  |  |  \\    Y    /\\  ___/|  |_|  |__" >> abyss/README.yml
-          echo " \\______  /|__|__|   \\___|_  /  \\___  >____/____/" >> abyss/README.yml
-          echo "        \\/                 \\/       \\/           " >> abyss/README.yml
+          echo " /   \\  __ |  \\   __\\/    ~    \\_/ __ \\|  | |  |  " >> abyss/README.yml
+          echo " \    \\_\\  \\|  |  |  \\    Y    /\\  ___/|  |_|  |__" >> abyss/README.yml
+          echo "  \\______  /|__|__|   \\___|_  /  \\___  >____/____/" >> abyss/README.yml
+          echo "         \\/                 \\/       \\/           " >> abyss/README.yml
           echo "--------------------------------------------------" >> abyss/README.yml
           echo "The abyss grows deeper with each commit." >> abyss/README.yml
           echo "--------------------------------------------------" >> abyss/README.yml
           echo "Commit ID: $commit_id" >> abyss/README.yml
-          echo "Commit: $total_commits" >> abyss/README.yml
+          echo "Total Commits in Repo: $total_commits" >> abyss/README.yml
           echo "Execution Count: ${{ env.execution_count }}" >> abyss/README.yml
           echo "Last Execution Time: $current_time" >> abyss/README.yml
+          echo "Co-author of the day: $RANDOM_CO_AUTHOR" >> abyss/README.yml
           echo "--------------------------------------------------" >> abyss/README.yml
 
           git add abyss/README.yml
-          git commit -m "🚀 The abyss has no bottom... (Total commits: $total_commits, Executions: ${{ env.execution_count }}, Last run: $current_time)"
+          
+          commit_msg="🚀 The abyss has no bottom... (Total: $total_commits)
+
+Co-authored-by: $RANDOM_CO_AUTHOR"
+          
+          git commit -m "$commit_msg"
           
           git push
