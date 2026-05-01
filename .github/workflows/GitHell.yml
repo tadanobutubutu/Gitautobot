@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Ensure abyss folder exists
         run: mkdir -p abyss
@@ -31,19 +31,19 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "0x3EF8"
+          git config user.email "0x3ef8@gmail.com"
           current_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           commit_id=$(cat /proc/sys/kernel/random/uuid)
           total_commits=$(git rev-list --count HEAD)
 
           echo "  _________.__  __     ___ ___         .__  .__   " > abyss/README.yml
-          echo " /  _____/|__|/  |_  /   |   \   ____ |  | |  |  " >> abyss/README.yml
-          echo "/   \  __ |  \   __\/    ~    \_/ __ \|  | |  |  " >> abyss/README.yml
-          echo "\    \_\  \|  |  |  \    Y    /\  ___/|  |_|  |__" >> abyss/README.yml
-          echo " \______  /|__|__|   \___|_  /  \___  >____/____/" >> abyss/README.yml
-          echo "        \/                 \/       \/           " >> abyss/README.yml
+          echo " /  _____/|__|/  |_  /   |   \\   ____ |  | |  |  " >> abyss/README.yml
+          echo "/   \\  __ |  \\   __\\/    ~    \\_/ __ \\|  | |  |  " >> abyss/README.yml
+          echo "\\    \\_\\  \\|  |  |  \\    Y    /\\  ___/|  |_|  |__" >> abyss/README.yml
+          echo " \\______  /|__|__|   \\___|_  /  \\___  >____/____/" >> abyss/README.yml
+          echo "        \\/                 \\/       \\/           " >> abyss/README.yml
           echo "--------------------------------------------------" >> abyss/README.yml
           echo "The abyss grows deeper with each commit." >> abyss/README.yml
           echo "--------------------------------------------------" >> abyss/README.yml
