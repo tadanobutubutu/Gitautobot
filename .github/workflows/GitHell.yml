@@ -35,29 +35,25 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           current_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          count=0
-          while [ $count -lt 1000 ]; do
-            commit_id=$(cat /proc/sys/kernel/random/uuid)
-            total_commits=$(git rev-list --count HEAD)
+          commit_id=$(cat /proc/sys/kernel/random/uuid)
+          total_commits=$(git rev-list --count HEAD)
 
-            echo "  _________.__  __     ___ ___         .__  .__   " > abyss/README.yml
-            echo " /  _____/|__|/  |_  /   |   \   ____ |  | |  |  " >> abyss/README.yml
-            echo "/   \  __ |  \   __\/    ~    \_/ __ \|  | |  |  " >> abyss/README.yml
-            echo "\    \_\  \|  |  |  \    Y    /\  ___/|  |_|  |__" >> abyss/README.yml
-            echo " \______  /|__|__|   \___|_  /  \___  >____/____/" >> abyss/README.yml
-            echo "        \/                 \/       \/           " >> abyss/README.yml
-            echo "--------------------------------------------------" >> abyss/README.yml
-            echo "The abyss grows deeper with each commit." >> abyss/README.yml
-            echo "--------------------------------------------------" >> abyss/README.yml
-            echo "Commit ID: $commit_id" >> abyss/README.yml
-            echo "Commit: $total_commits" >> abyss/README.yml
-            echo "Execution Count: ${{ env.execution_count }}" >> abyss/README.yml
-            echo "Last Execution Time: $current_time" >> abyss/README.yml
-            echo "--------------------------------------------------" >> abyss/README.yml
+          echo "  _________.__  __     ___ ___         .__  .__   " > abyss/README.yml
+          echo " /  _____/|__|/  |_  /   |   \   ____ |  | |  |  " >> abyss/README.yml
+          echo "/   \  __ |  \   __\/    ~    \_/ __ \|  | |  |  " >> abyss/README.yml
+          echo "\    \_\  \|  |  |  \    Y    /\  ___/|  |_|  |__" >> abyss/README.yml
+          echo " \______  /|__|__|   \___|_  /  \___  >____/____/" >> abyss/README.yml
+          echo "        \/                 \/       \/           " >> abyss/README.yml
+          echo "--------------------------------------------------" >> abyss/README.yml
+          echo "The abyss grows deeper with each commit." >> abyss/README.yml
+          echo "--------------------------------------------------" >> abyss/README.yml
+          echo "Commit ID: $commit_id" >> abyss/README.yml
+          echo "Commit: $total_commits" >> abyss/README.yml
+          echo "Execution Count: ${{ env.execution_count }}" >> abyss/README.yml
+          echo "Last Execution Time: $current_time" >> abyss/README.yml
+          echo "--------------------------------------------------" >> abyss/README.yml
 
-            git add abyss/README.yml
-            git commit -m "🚀 The abyss has no bottom... (Total commits: $total_commits, Executions: ${{ env.execution_count }}, Last run: $current_time)"
-            count=$((count+1))
-          done
+          git add abyss/README.yml
+          git commit -m "🚀 The abyss has no bottom... (Total commits: $total_commits, Executions: ${{ env.execution_count }}, Last run: $current_time)"
           
           git push
